@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: section1
-
-  security:
-    user:
-      name: lokesh
-      password: mittal
