@@ -1,10 +1,10 @@
-package com.lokesh.spring_security;
+package com.lokesh.section1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringSecurityApplicationTests {
+class EazyBankBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
