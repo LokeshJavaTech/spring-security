@@ -1,6 +1,12 @@
 # spring-security
 Demo project to learn Spring Security using Spring Boot
 
-Course reference: https://www.udemy.com/course/spring-security-zero-to-master/
-Github reference: https://github.com/eazybytes/spring-security
+**Course reference:**  
+https://www.udemy.com/course/spring-security-zero-to-master/  
+https://github.com/eazybytes/spring-security
+
+**Sections:**  
+1. Adding spring security dependency. By default it enables login page with username and password functionality
+
+
 
