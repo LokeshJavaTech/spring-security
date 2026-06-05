@@ -3,13 +3,13 @@ package com.lokesh.springsecurity.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -34,17 +34,8 @@ public class ProjectSecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails readUser = User
-                                .withUsername("lokesh")
-                                .password("{noop}mittal")       // Password will store as plain text in memory
-                                .build();
-        // Used https://bcrypt-generator.com/ to generate bcrypt hash for password = admin
-        UserDetails adminUser = User
-                                .withUsername("admin")
-                                .password("{bcrypt}$2a$12$yswSliruV1NqSYBGYolYeOx4Kx/82duOST5wULSMALj3iplBxXmmG")   // hashed password will store in memory
-                                .build();
-        return new InMemoryUserDetailsManager(readUser, adminUser);
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
