@@ -15,3 +15,21 @@ INSERT IGNORE INTO `authorities`(username, authority) values('lokesh', 'read');
 INSERT IGNORE INTO `users`(username, password, enabled) values('admin', '{bcrypt}$2a$12$yswSliruV1NqSYBGYolYeOx4Kx/82duOST5wULSMALj3iplBxXmmG', '1');
 INSERT IGNORE INTO `authorities`(username, authority) values('admin', 'admin');
 
+
+# SQL Queries to create custom tables for user authentication
+
+CREATE TABLE `customer` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(30) NOT NULL,
+    `last_name` VARCHAR(30) NOT NULL,
+    `email` VARCHAR(50) NOT NULL,
+    `pwd` VARCHAR(200) NOT NULL,
+    `role` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
+insert into customer(first_name, last_name, email, pwd, role)
+     values ('Lokesh', 'Mittal', 'lokesh@gmail.com', '{noop}mittal', 'read');
+insert into customer(first_name, last_name, email, pwd, role)
+     values ('Admin', 'Mittal', 'admin@gmail.com', '{bcrypt}$2a$12$yswSliruV1NqSYBGYolYeOx4Kx/82duOST5wULSMALj3iplBxXmmG', 'admin');
+
