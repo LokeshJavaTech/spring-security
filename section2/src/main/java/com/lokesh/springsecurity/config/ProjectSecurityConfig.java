@@ -22,8 +22,8 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/myAccount", "/myBalance", "/myCards", "/myLoans").authenticated()
                 .requestMatchers("/contact", "/notices", "/error").permitAll()
         );
-        http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.formLogin(withDefaults());     // Accepts credentials send into login form
+        http.httpBasic(withDefaults());     // Accepts credentials send into header --> key="Authorization" value="Basic base64encoded(username:password)"
         return http.build();
     }
 }
