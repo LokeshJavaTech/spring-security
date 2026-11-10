@@ -1,5 +1,6 @@
 package com.lokesh.springsecurity.config;
 
+import com.lokesh.springsecurity.exception.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,7 +28,7 @@ public class ProjectSecurityConfig {
                     .requestMatchers("/contact", "/notices", "/error", "/register").permitAll()
             );
         http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         return http.build();
     }
 
