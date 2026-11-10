@@ -28,7 +28,13 @@ public class ProjectSecurityConfig {
                     .requestMatchers("/contact", "/notices", "/error", "/register").permitAll()
             );
         http.formLogin(withDefaults());
+
+        // Supports 401 exception handling only when user is trying to log in using HTTP Basic Authentication flow
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+
+        // Supports 401 exception handling globally throughout the project whenever 401 is thrown
+        http.exceptionHandling(ehc -> ehc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+
         return http.build();
     }
 
