@@ -1,5 +1,6 @@
 package com.lokesh.springsecurity.config;
 
+import com.lokesh.springsecurity.exception.CustomAccessDeniedHandler;
 import com.lokesh.springsecurity.exception.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,9 @@ public class ProjectSecurityConfig {
         http.httpBasic(hbc -> hbc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
 
         // Supports 401 exception handling globally throughout the project whenever 401 is thrown
-        http.exceptionHandling(ehc -> ehc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+        // Supports 403 exception handling
+        http.exceptionHandling(ehc -> ehc
+                                                                             .accessDeniedHandler(new CustomAccessDeniedHandler()));
 
         return http.build();
     }
