@@ -22,3 +22,10 @@ Section 3:
 
 Section 4:
 - Saving user in custom database table and fetch using our own custom implementation of UserDetailsService
+
+Section 6:
+- Add custom AuthenticationProvider
+- Exception handling for Basic Auth
+  - For 401 Authentication Exception - Added AuthenticationEntryPoint
+  - For 403 Authorization Exception - Added AccessDeniedHandler
+
