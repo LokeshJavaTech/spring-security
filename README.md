@@ -29,3 +29,7 @@ Section 6:
   - For 401 Authentication Exception - Added AuthenticationEntryPoint
   - For 403 Authorization Exception - Added AccessDeniedHandler
 
+Section 7:
+- Listen to Authentication success and failure events
+- Retrieve logged-in user's Authentication from SecurityContext
+
