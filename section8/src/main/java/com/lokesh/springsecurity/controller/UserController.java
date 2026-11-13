@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.sql.Date;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,8 +29,20 @@ public class UserController {
     {
         String hashedPwd = passwordEncoder.encode(customer.getPwd());
         customer.setPwd(hashedPwd);
-        customerRepository.save(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully with username: "+customer.getEmail());
+        customer.setCreateDt(new Date(System.currentTimeMillis()));
+        Customer savedCustomer = customerRepository.save(customer);
+
+        if (savedCustomer.getId() > 0){
+            return ResponseEntity.status(HttpStatus.CREATED).body("Given user details are successfully registered.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User registration failed.");
+        }
+    }
+
+    @GetMapping("/user")
+    public Customer getUserDetailsAfterLogin(Authentication authentication) {
+        Optional<Customer> optionalCustomer = customerRepository.findByEmail(authentication.getName());
+        return optionalCustomer.orElse(null);
     }
 
     @GetMapping("/user1")
