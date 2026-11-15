@@ -33,3 +33,11 @@ Section 7:
 - Listen to Authentication success and failure events
 - Retrieve logged-in user's Authentication from SecurityContext
 
+Section 8:
+- Running Frontend angular application:
+  - Start terminal and navigate inside folder bank-app-ui (where package.json file is present)
+  - run the command 'npm install' --> install dependencies inside 'node_module'
+  - run the command 'ng serve' --> starts the frontend application by default at http://localhost:4200
+- Creating new DB schema and backend APIs for frontend
+- Enable CORS policy in backend for frontend http://localhost:4200
+
